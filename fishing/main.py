@@ -1,7 +1,10 @@
-"""
-Fishing Game (Lab Starter)
 
-Run with:  python3 main.py
+"""
+Fishing Game
+
+Controls:
+SPACE - Cast the fishing hook
+R     - Restart after the round ends
 """
 
 import pygame
@@ -19,10 +22,18 @@ def main():
 
     engine = GameEngine()
     running = True
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    engine.start_cast()
+
+                elif event.key == pygame.K_r and engine.game_over:
+                    engine.reset()
 
         engine.update()
         engine.draw(screen, font)
